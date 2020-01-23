@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateNotificationComponent } from './create-notification/create-notification.component';
 import { LastNotificationsSentComponent } from './last-notifications-sent/last-notifications-sent.component';
 
-
 @NgModule({
   declarations: [CreateNotificationComponent, LastNotificationsSentComponent],
   imports: [
