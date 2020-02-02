@@ -45,7 +45,7 @@ export class CreateNotificationComponent {
       },
       subtitle: {
         es: value.subtitle_es,
-        en: value.subtitle,
+        en: value.subtitle_es,
       },
       contents: {
         es: value.contents_es,
