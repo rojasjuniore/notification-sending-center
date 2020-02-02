@@ -83,6 +83,7 @@ export class CreateNotificationComponent {
         this.loading = false
         this.notificationNotSentSwal.fire()
       })
+      
   }
 
   get url_data() {
