@@ -1,19 +1,9 @@
 <div class="container">
     <div class="py-5 text-center">
-        <img class="d-block mx-auto mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h2>Centro de envíos de notificaciones v0.0.1</h2>
-
+        <img class="d-block mx-auto mb-4" src="/assets/img/logo.png" alt="" width="100" height="100">
+        <h2>Centro de envíos de notificaciones v0.0.2</h2>
     </div>
-
     <div class="row">
-
-        <!--ultimas notificaciones eviada-->
-        <!-- <div class="col-md-4 order-md-2 mb-4">
-            <app-last-notifications-sent></app-last-notifications-sent>
-
-        </div> -->
-
-        <!--Crear notifiacione-->
         <div class="col-md-12 order-md-1">
             <h4 class="mb-3">Included</h4>
             <form class="needs-validation" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -32,14 +22,14 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="headings_es">Headings (es)</label>
-                        <input formControlName="headings_es" [ngClass]="{ 'is-invalid': submitted && f.headings_es.errors }" type="text" class="form-control" id="headings_es" placeholder="Contents (en)">
+                        <input formControlName="headings_es" [ngClass]="{ 'is-invalid': submitted && f.headings_es.errors }" type="text" class="form-control" id="headings_es" placeholder="headings_es (es)">
                         <div *ngIf="submitted && f.headings_es.errors" class="invalid-feedback">
                             Valid Headings (es) is required.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="subtitle_es">Subtitle (Es)</label>
-                        <input formControlName="subtitle_es" [ngClass]="{ 'is-invalid': submitted && f.subtitle_es.errors }" type="text" class="form-control" id="subtitle_es" placeholder="Contents (en)">
+                        <input formControlName="subtitle_es" [ngClass]="{ 'is-invalid': submitted && f.subtitle_es.errors }" type="text" class="form-control" id="subtitle_es" placeholder="Subtitle (es)">
                         <div *ngIf="submitted && f.subtitle_es.errors" class="invalid-feedback">
                             Valid Subtitle (Es) is required.
                         </div>
@@ -75,10 +65,21 @@
                 </div>
                 <hr class="mb-4">
                 <div class="text-center">
-                    <button class="btn btn-primary mr-1">Enviar notificacion</button>
+                    <button *ngIf="!loading" class="btn btn-primary mr-1">Enviar notificacion</button>
+                    <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span class="sr-only">Loading...</span>
+                    </button>
                     <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+
+<swal #notificationNotSentSwal title="No se ha enviado la notificación" text="Contacte a un administrador" icon="error">
+</swal>
+
+<swal #notificationSentSwal title="Notificación enviada" text="Recipients: {{info?.recipients}},  Date: {{ info?.date}}" icon="success">
+</swal>

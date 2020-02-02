@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CreateNotificationComponent } from './create-notification/create-notification.component';
 import { LastNotificationsSentComponent } from './last-notifications-sent/last-notifications-sent.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [CreateNotificationComponent, LastNotificationsSentComponent],
@@ -13,7 +14,8 @@ import { LastNotificationsSentComponent } from './last-notifications-sent/last-n
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    SweetAlert2Module
   ]
 })
 export class PagesModule { }

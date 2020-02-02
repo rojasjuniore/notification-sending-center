@@ -16,7 +16,7 @@ import { SignInComponent } from "./public/sign-in/sign-in.component";
 import { PagesComponent } from "./pages/pages.component";
 
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
