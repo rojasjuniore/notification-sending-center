@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-const url_root: any = "http://localhost:3000"
+
+// const url_root: any = "http://localhost:3000"
+const url_root: any = 'http://notificaciones.charlieburgerfood.com:3000'
 
 @Injectable({
   providedIn: 'root'

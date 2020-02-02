@@ -55,7 +55,7 @@ export class CreateNotificationComponent {
       data: { url: value.url_data },
     };
 
-
+    console.log('notification', notification)
     this._onesignal.createNotification(notification)
       .subscribe((data: any) => {
         console.log("data", data)
