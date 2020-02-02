@@ -15,6 +15,8 @@ import { PageNotFoundComponent } from './error/page-not-found/page-not-found.com
 import { SignInComponent } from "./public/sign-in/sign-in.component";
 import { PagesComponent } from "./pages/pages.component";
 
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { PagesComponent } from "./pages/pages.component";
     ReactiveFormsModule,
     SharedModule
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
