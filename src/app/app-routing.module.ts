@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './error/page-not-found/page-not-found.component';
 import { SignInComponent } from "./public/sign-in/sign-in.component";
 import { PagesComponent } from "./pages/pages.component";
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
