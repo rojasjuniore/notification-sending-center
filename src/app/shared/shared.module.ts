@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   declarations: [NavbarComponent, FooterComponent],
   exports: [NavbarComponent, FooterComponent]
 })

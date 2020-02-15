@@ -1,0 +1,57 @@
+<div class="conteiner">
+    <div class="table-responsive">
+        <table class="table table-hover" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="20">
+            <thead>
+                <tr>
+                    <th scope="col">Headings</th>
+                    <th scope="col">Contents</th>
+                    <th scope="col">Included Segments</th>
+                    <th scope="col">completed_at</th>
+                    <th scope="col">Remaining</th>
+                    <th scope="col">Successful</th>
+                    <th scope="col">IOS</th>
+                    <th scope="col">ANDROID</th>
+                    <th scope="col">Chrome Web Push</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of mf.data ; let i = index">
+                    <td>{{item?.headings|titlecase}}</td>
+                    <td>{{item?.contents|titlecase}}</td>
+                    <td>{{item?.included_segments |titlecase}}</td>
+                    <td>{{item?.completed_at|date}}</td>
+                    <td>{{item?.successful}}</td>
+                    <td>{{item?.received}}</td>
+                    <td>
+                        <h5>
+                            <span class="badge badge-primary">{{item.ios?.successful}}</span>
+                            <span class="badge badge-warning">{{item.ios?.errored}}</span>
+                            <span class="badge badge-danger">{{item.ios?.failed}}</span>
+                        </h5>
+                    </td>
+                    <td>
+                        <h5>
+                            <span class="badge badge-primary">{{item.android?.successful}}</span>
+                            <span class="badge badge-warning">{{item.android?.errored}}</span>
+                            <span class="badge badge-danger">{{item.android?.failed}}</span>
+                        </h5>
+                    </td>
+                    <td>
+                        <h5>
+                            <span class="badge badge-primary">{{item.chrome_web_push?.successful}}</span>
+                            <span class="badge badge-warning">{{item.chrome_web_push?.errored}}</span>
+                            <span class="badge badge-danger">{{item.chrome_web_push?.failed}}</span>
+                        </h5>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="8">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[15,50,100]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

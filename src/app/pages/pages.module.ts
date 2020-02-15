@@ -7,15 +7,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateNotificationComponent } from './create-notification/create-notification.component';
 import { LastNotificationsSentComponent } from './last-notifications-sent/last-notifications-sent.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { ViewNotificationsComponent } from './view-notifications/view-notifications.component';
+import { DataTableModule } from 'angular-6-datatable';
+
 
 @NgModule({
-  declarations: [CreateNotificationComponent, LastNotificationsSentComponent],
+  declarations: [CreateNotificationComponent, LastNotificationsSentComponent, ViewNotificationsComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     PagesRoutingModule,
-    SweetAlert2Module
+    SweetAlert2Module,
+    DataTableModule
   ]
 })
 export class PagesModule { }
