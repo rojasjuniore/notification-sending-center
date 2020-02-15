@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  url_root: 'http://notificaciones.charlieburgerfood.com:3000',
 };
