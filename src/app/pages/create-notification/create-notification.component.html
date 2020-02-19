@@ -5,54 +5,54 @@
             <form class="needs-validation" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <label for="country">Segments</label>
+                        <label for="country">Segmentos</label>
                         <select formControlName="segments" [ngClass]="{ 'is-invalid': submitted && f.segments.errors }"
                             class="custom-select d-block w-100" id="segments" required>
-                            <option value="">Choose...</option>
-                            <option value="All">All</option>
-                            <option value="Subscribed Users">Subscribed Users</option>
-                            <option value="Active Users">Active Users</option>
-                            <option value="Inactive Users">Inactive Users</option>
-                            <option value="test">TEST</option>
+                            <option value="">Escoger...</option>
+                            <option value="All">Todos</option>
+                            <option value="Subscribed Users">Usuarios suscritos</option>
+                            <option value="Active Users">Usuarios activos</option>
+                            <option value="Inactive Users">Usuarios inactivos</option>
+                            <option value="test">Prueba</option>
                         </select>
                         <div *ngIf="submitted && f.segments.errors" class="invalid-feedback" class="invalid-feedback">
                             Please select a valid Segments.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="headings_es">Headings (es)</label>
+                        <label for="headings_es">Encabezados </label>
                         <input formControlName="headings_es"
                             [ngClass]="{ 'is-invalid': submitted && f.headings_es.errors }" type="text"
-                            class="form-control" id="headings_es" placeholder="headings_es (es)">
+                            class="form-control" id="headings_es" placeholder="Encabezados">
                         <div *ngIf="submitted && f.headings_es.errors" class="invalid-feedback">
-                            Valid Headings (es) is required.
+                            Valid Encabezados is required.
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="subtitle_es">Subtitle (Es)</label>
+                        <label for="subtitle_es">Subtitular </label>
                         <input formControlName="subtitle_es"
                             [ngClass]="{ 'is-invalid': submitted && f.subtitle_es.errors }" type="text"
-                            class="form-control" id="subtitle_es" placeholder="Subtitle (es)">
+                            class="form-control" id="subtitle_es" placeholder="Subtitular">
                         <div *ngIf="submitted && f.subtitle_es.errors" class="invalid-feedback">
-                            Valid Subtitle (Es) is required.
+                            Valid Subtitular (Es) is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="contents_es">Date</label>
-                        <input class="form-control" placeholder="Date" name="date" [min]="min" [max]="max"
+                        <label for="contents_es">Fecha</label>
+                        <input class="form-control" placeholder="Fecha" name="date" [min]="min" [max]="max"
                             [owlDateTimeTrigger]="dt" [owlDateTime]="dt" formControlName="date">
                         <owl-date-time #dt></owl-date-time>
                         <div *ngIf="submitted && f.contents_es.errors" class="invalid-feedback">
-                            Valid Contents (Es) is required.
+                            Valid Fecha (Es) is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="contents_es">Contents (Es)</label>
+                        <label for="contents_es">Contenido (Es)</label>
                         <input formControlName="contents_es"
                             [ngClass]="{ 'is-invalid': submitted && f.contents_es.errors }" type="text"
-                            class="form-control" id="contents_es" placeholder="Contents (Es)">
+                            class="form-control" id="contents_es" placeholder="Contenido">
                         <div *ngIf="submitted && f.contents_es.errors" class="invalid-feedback">
-                            Valid Contents (Es) is required.
+                            Contenido (Es) is required.
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@
 
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label for="zip">Url</label>
+                        <label for="zip">URL (https://app.charlieburgerfood.com/)</label>
                         <input formControlName="url_data" [ngClass]="{ 'is-invalid': submitted && f.url_data.errors }"
                             type="text" class="form-control" id="url_data" placeholder="url" required>
                         <div *ngIf="submitted && f.url_data.errors" class="invalid-feedback">
@@ -76,8 +76,8 @@
                 <div class="form-group form-check">
                     <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input"
                         [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
-                    <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
-                    <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is required
+                    <label for="acceptTerms" class="form-check-label">Aceptar los términos y condiciones</label>
+                    <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Aceptar los términos y condiciones
                     </div>
                 </div>
                 <hr class="mb-4">
