@@ -9,9 +9,11 @@
                         <select formControlName="segments" [ngClass]="{ 'is-invalid': submitted && f.segments.errors }"
                             class="custom-select d-block w-100" id="segments" required>
                             <option value="">Choose...</option>
+                            <option value="All">All</option>
                             <option value="Subscribed Users">Subscribed Users</option>
                             <option value="Active Users">Active Users</option>
                             <option value="Inactive Users">Inactive Users</option>
+                            <option value="test">TEST</option>
                         </select>
                         <div *ngIf="submitted && f.segments.errors" class="invalid-feedback" class="invalid-feedback">
                             Please select a valid Segments.
@@ -35,7 +37,16 @@
                             Valid Subtitle (Es) is required.
                         </div>
                     </div>
-                    <div class="col-md-12 mb-3">
+                    <div class="col-md-6 mb-3">
+                        <label for="contents_es">Date</label>
+                        <input class="form-control" placeholder="Date" name="date" [min]="min" [max]="max"
+                            [owlDateTimeTrigger]="dt" [owlDateTime]="dt" formControlName="date">
+                        <owl-date-time #dt></owl-date-time>
+                        <div *ngIf="submitted && f.contents_es.errors" class="invalid-feedback">
+                            Valid Contents (Es) is required.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
                         <label for="contents_es">Contents (Es)</label>
                         <input formControlName="contents_es"
                             [ngClass]="{ 'is-invalid': submitted && f.contents_es.errors }" type="text"
@@ -44,6 +55,7 @@
                             Valid Contents (Es) is required.
                         </div>
                     </div>
+
                 </div>
 
                 <hr class="mb-4">
@@ -86,6 +98,6 @@
 <swal #notificationNotSentSwal title="No se ha enviado la notificación" text="Contacte a un administrador" icon="error">
 </swal>
 
-<swal #notificationSentSwal title="Notificación enviada" text="Recipients: {{info?.recipients}},  Date: {{ info?.date}}"
-    icon="success">
+<swal #notificationSentSwal title="Notificación enviada"
+    text="Recipients: {{info?.recipients}},  Send After: {{ info?.send_after}}" icon="success">
 </swal>

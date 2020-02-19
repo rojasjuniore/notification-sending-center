@@ -10,6 +10,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ViewNotificationsComponent } from './view-notifications/view-notifications.component';
 import { DataTableModule } from 'angular-6-datatable';
 
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
 
 @NgModule({
   declarations: [CreateNotificationComponent, LastNotificationsSentComponent, ViewNotificationsComponent],
@@ -19,7 +21,9 @@ import { DataTableModule } from 'angular-6-datatable';
     ReactiveFormsModule,
     PagesRoutingModule,
     SweetAlert2Module,
-    DataTableModule
+    DataTableModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ]
 })
 export class PagesModule { }

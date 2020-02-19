@@ -22,7 +22,9 @@ export class ViewNotificationsComponent implements OnInit {
     if (!data) return
     let result = []
     data.forEach(item => {
+      console.log("item.data", item.data)
       result.push({
+        data: item.data ? item.data : "N/A",
         headings: item.headings.es ? item.headings.es : "N/A",
         contents: item.contents.es ? item.contents.es : "N/A",
         included_segments: item.included_segments[0] ? item.included_segments[0] : "N/A",
