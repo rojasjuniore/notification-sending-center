@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  url_root: 'http://notificaciones.charlieburgerfood.com:3000',
+  url_root: 'https://notificaciones.charlieburgerfood.com:3031',
 };
