@@ -2,9 +2,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { urlValidator } from "../../helpers/urlvalidator.validator";
+import { removeSpaces } from "../../helpers/removeSpaces";
 import { OnesignalService } from '../../services/onesignal/onesignal.service';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-
 import * as moment from 'moment';
 
 
@@ -29,14 +29,14 @@ export class CreateNotificationComponent {
 
   constructor(private formBuilder: FormBuilder, public _onesignal: OnesignalService) {
     this.loading = false
-    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
     this.registerForm = this.formBuilder.group({
       segments: ['', Validators.required],
       contents_es: ['', Validators.required],
       headings_es: ['', Validators.required],
       subtitle_es: ['', Validators.required],
-      url_data: ['', [Validators.required, Validators.pattern(reg)]],
-      date: ['', [Validators.required]],
+      isChecked: [false],
+      url_data: ['', [Validators.required]],
+      date: [''],
       acceptTerms: [false, Validators.requiredTrue]
     }, {
     });
@@ -51,14 +51,8 @@ export class CreateNotificationComponent {
       return;
     }
 
-    // console.log("value", this.registerForm.value)
-    // console.log("MI TOKEN IPHONE 7 PLUS: 1ee4b59f-d976-4a72-a30b-3d88ca3dfa33")
-    // console.log("MI TOKEN IPAD: a131de03-d502-420d-bd6a-711ff77bc518")
     const value = this.registerForm.value
-    // console.log('value', value)
-    // console.log(value.date)
-    // var newDate = moment(value.date).format();
-    // console.log(newDate)
+
     let notification: any
     if (value.segments == 'test') {
       notification = {
@@ -74,11 +68,12 @@ export class CreateNotificationComponent {
           es: value.contents_es,
           en: value.contents_es,
         },
-        include_player_ids: ["a131de03-d502-420d-bd6a-711ff77bc518", "1ee4b59f-d976-4a72-a30b-3d88ca3dfa33"],
-        send_after: moment(value.date).format(),
-        data: { url: value.url_data },
+        include_player_ids: ["a4397f38-09b2-41fd-9315-03e90d9b7d9a", "92288eb1-d002-4fcd-b04d-4ef5e5c84ca1"],
+        // send_after: moment(value.date).format(),
+        data: { url: value.url_data.trim() },
       };
-    } else {
+    } else if (value.isChecked) {
+      // COn fecha
       notification = {
         headings: {
           es: value.headings_es,
@@ -94,7 +89,25 @@ export class CreateNotificationComponent {
         },
         included_segments: [value.segments],
         send_after: moment(value.date).format(),
-        data: { url: value.url_data },
+        data: { url: value.url_data.trim() },
+      }
+    } else {
+      // Sin fecha
+      notification = {
+        headings: {
+          es: value.headings_es,
+          en: value.headings_es,
+        },
+        subtitle: {
+          es: value.subtitle_es,
+          en: value.subtitle_es,
+        },
+        contents: {
+          es: value.contents_es,
+          en: value.contents_es,
+        },
+        included_segments: [value.segments],
+        data: { url: value.url_data.trim() }
       }
     }
 
@@ -106,7 +119,7 @@ export class CreateNotificationComponent {
           id: data.response.body.id,
           recipients: data.response.body.recipients,
           date: data.response.headers.date,
-          send_after: moment(value.date).format()
+          send_after: value.isChecked ? moment(value.date).format() : data.response.headers.date
         }
         console.log("data", data)
         this.info = r

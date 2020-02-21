@@ -37,16 +37,7 @@
                             Valid Subtitular (Es) is required.
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="contents_es">Fecha</label>
-                        <input class="form-control" placeholder="Fecha" name="date" [min]="min" [max]="max"
-                            [owlDateTimeTrigger]="dt" [owlDateTime]="dt" formControlName="date">
-                        <owl-date-time #dt></owl-date-time>
-                        <div *ngIf="submitted && f.contents_es.errors" class="invalid-feedback">
-                            Valid Fecha (Es) is required.
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-12 mb-3">
                         <label for="contents_es">Contenido (Es)</label>
                         <input formControlName="contents_es"
                             [ngClass]="{ 'is-invalid': submitted && f.contents_es.errors }" type="text"
@@ -55,14 +46,29 @@
                             Contenido (Es) is required.
                         </div>
                     </div>
+                    <div class="col-md-12 mb- text-center">
+                        <div class="form-check">
+                            <input formControlName="isChecked" class="form-check-input" type="checkbox" value=""
+                                id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Delivery (Entrega)
+                            </label>
+                        </div>
+                    </div>
 
                 </div>
-
                 <hr class="mb-4">
-
                 <h4 class="mb-3">Data</h4>
-
                 <div class="row">
+                    <div *ngIf="registerForm.value.isChecked" class="col-md-12 mb-3">
+                        <label for="contents_es">Fecha</label>
+                        <input class="form-control" placeholder="Fecha" name="date" [min]="min" [max]="max"
+                            [owlDateTimeTrigger]="dt" [owlDateTime]="dt" formControlName="date">
+                        <owl-date-time #dt></owl-date-time>
+                        <div *ngIf="submitted && f.contents_es.errors" class="invalid-feedback">
+                            Valid Fecha (Es) is required.
+                        </div>
+                    </div>
                     <div class="col-md-12 mb-3">
                         <label for="zip">URL (https://app.charlieburgerfood.com/)</label>
                         <input formControlName="url_data" [ngClass]="{ 'is-invalid': submitted && f.url_data.errors }"
@@ -77,7 +83,8 @@
                     <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input"
                         [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
                     <label for="acceptTerms" class="form-check-label">Aceptar los términos y condiciones</label>
-                    <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Aceptar los términos y condiciones
+                    <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Aceptar los términos y
+                        condiciones
                     </div>
                 </div>
                 <hr class="mb-4">
@@ -94,6 +101,7 @@
     </div>
 </div>
 
+<!-- <pre>{{registerForm.value|json}}</pre> -->
 
 <swal #notificationNotSentSwal title="No se ha enviado la notificación" text="Contacte a un administrador" icon="error">
 </swal>
