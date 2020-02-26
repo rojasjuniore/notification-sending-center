@@ -130,7 +130,6 @@ export class CreateNotificationComponent {
     }
 
     console.log('notification', notification)
-    return
     this.loading = true
     this._onesignal.createNotification(notification)
       .subscribe((data: any) => {
