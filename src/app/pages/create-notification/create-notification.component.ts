@@ -26,20 +26,34 @@ export class CreateNotificationComponent {
 
   // Max moment: April 21 2018, 20:30
   public max = new Date(2021, 3, 21, 20, 30);
+  formleaders: any
+  constructor(
+    private formBuilder: FormBuilder,
+    public _onesignal: OnesignalService) {
 
-  constructor(private formBuilder: FormBuilder, public _onesignal: OnesignalService) {
+    this.getformleaders()
     this.loading = false
     this.registerForm = this.formBuilder.group({
       segments: ['', Validators.required],
       contents_es: ['', Validators.required],
       headings_es: ['', Validators.required],
       subtitle_es: ['', Validators.required],
+      acceptTerms: [false, Validators.required],
       isChecked: [false],
-      url_data: ['', [Validators.required]],
-      date: [''],
-      acceptTerms: [false, Validators.requiredTrue]
-    }, {
+      promotion: [false],
+      url_data: ['https://app.charlieburgerfood.com/'],
+      date: [null],
     });
+  }
+
+
+  getformleaders() {
+    this._onesignal
+      .getformleaders()
+      .subscribe((data) => {
+        this.formleaders = data
+        console.log('data', data)
+      }, err => console.log(err))
   }
 
 
@@ -47,11 +61,16 @@ export class CreateNotificationComponent {
     this.submitted = true;
 
     // stop here if form is invalid
+    const value = this.registerForm.value
+    console.log('this.registerForm', this.registerForm)
+    console.log('value', value)
     if (this.registerForm.invalid) {
       return;
     }
 
-    const value = this.registerForm.value
+
+
+    const url_data = value.url_data ? value.url_data.trim() : 'https://app.charlieburgerfood.com/'
 
     let notification: any
     if (value.segments == 'test') {
@@ -69,11 +88,10 @@ export class CreateNotificationComponent {
           en: value.contents_es,
         },
         include_player_ids: ["a4397f38-09b2-41fd-9315-03e90d9b7d9a", "92288eb1-d002-4fcd-b04d-4ef5e5c84ca1"],
-        // send_after: moment(value.date).format(),
-        data: { url: value.url_data.trim() },
+        data: { url: url_data },
       };
     } else if (value.isChecked) {
-      // COn fecha
+      // Con fecha
       notification = {
         headings: {
           es: value.headings_es,
@@ -89,7 +107,7 @@ export class CreateNotificationComponent {
         },
         included_segments: [value.segments],
         send_after: moment(value.date).format(),
-        data: { url: value.url_data.trim() },
+        data: { url: url_data },
       }
     } else {
       // Sin fecha
@@ -107,11 +125,12 @@ export class CreateNotificationComponent {
           en: value.contents_es,
         },
         included_segments: [value.segments],
-        data: { url: value.url_data.trim() }
+        data: { url: url_data }
       }
     }
 
     console.log('notification', notification)
+    return
     this.loading = true
     this._onesignal.createNotification(notification)
       .subscribe((data: any) => {

@@ -26,4 +26,8 @@ export class OnesignalService {
     return this.http.get(`${environment.url_root}/viewDevices`)
   }
 
+  getformleaders() {
+    return this.http.get(` https://app.charlieburgerfood.com/api/formleaders`)
+  }
+
 }
